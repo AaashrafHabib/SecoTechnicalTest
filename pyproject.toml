@@ -3,7 +3,15 @@ name = "seco-technical-test"
 version = "0.1.0"
 description = "RAG-powered chatbot for EU construction standards"
 requires-python = ">=3.10,<3.13"
-dependencies = []
+dependencies = [
+    "boto3>=1.35.0",
+    "langchain>=0.3.0",
+    "langchain-aws>=0.2.0",
+    "langchain-text-splitters>=0.3.0",
+    "pymupdf>=1.25.0",
+    "pydantic-settings>=2.0.0",
+    "python-dotenv>=1.0.0",
+]
 
 [dependency-groups]
 dev = [
@@ -33,8 +41,3 @@ files = "src/"
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
-
-dependencies = [
-    "pydantic-settings>=2.0.0",
-    "python-dotenv>=1.0.0",
-]
