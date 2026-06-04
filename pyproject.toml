@@ -4,6 +4,7 @@ version = "0.1.0"
 description = "RAG-powered chatbot for EU construction standards"
 requires-python = ">=3.10,<3.13"
 dependencies = [
+    "chainlit>=2.0.0",
     "boto3>=1.35.0",
     "langchain>=0.3.0",
     "langchain-aws>=0.2.0",
