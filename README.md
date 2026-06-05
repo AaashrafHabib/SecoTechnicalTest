@@ -65,7 +65,7 @@ SECO's core business is technical control and risk prevention in construction. T
 ### Prerequisites
 - Python 3.10-3.12
 - [UV](https://docs.astral.sh/uv/) package manager
-- AWS account with Bedrock access (Claude 3 Sonnet + Titan Embeddings enabled)
+- AWS account with Bedrock access (Claude Sonnet 4.6 + Titan Embeddings enabled)
 
 ### Installation
 
@@ -123,7 +123,7 @@ infra/
 
 ## Tech Stack
 
-- **LLM:** Claude 3 Sonnet via AWS Bedrock
+- **LLM:** Claude Sonnet 4.6 via AWS Bedrock
 - **Embeddings:** Amazon Titan Embed Text v2
 - **Vector Store:** ChromaDB (persistent, file-based)
 - **Document Processing:** PyMuPDF + LangChain text splitters
