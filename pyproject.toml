@@ -1,0 +1,35 @@
+[project]
+name = "seco-technical-test"
+version = "0.1.0"
+description = "RAG-powered chatbot for EU construction standards"
+requires-python = ">=3.10,<3.13"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.0.0",
+    "pytest>=8.0.0",
+    "ruff>=0.8.0",
+    "mypy>=1.0.0",
+]
+
+[tool.ruff]
+target-version = "py312"
+exclude = ["*.ipynb"]
+
+[tool.ruff.lint]
+select = ["F", "W", "E", "I", "UP"]
+ignore = ["E501"]
+
+[tool.mypy]
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+files = "src/"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
