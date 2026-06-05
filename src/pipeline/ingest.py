@@ -11,23 +11,10 @@ from src.pipeline.vectorstore import get_vectorstore
 
 
 def extract_text_from_pdf(pdf_path: str) -> list[dict[str, str]]:
-    """
-    Extract text content from each page of a PDF file.
-
-    Opens the PDF with PyMuPDF (fitz) and extracts text from each page.
-    Empty pages are skipped.
-
-    Args:
-        pdf_path (str): Absolute or relative path to the PDF file.
-
-    Returns:
-        list[dict[str, str]]: List of page dicts with keys:
-            - text: Extracted page content.
-            - source: PDF filename (basename only).
-            - page: 1-indexed page number as string.
-    """
+    """Extract text content from each page of a PDF file."""
+    doc = fitz.open(pdf_path)
     pages = []
-    with fitz.open(pdf_path) as doc:
+    try:
         for page_num, page in enumerate(doc, start=1):
             text = page.get_text()
             if text.strip():
@@ -38,26 +25,15 @@ def extract_text_from_pdf(pdf_path: str) -> list[dict[str, str]]:
                         "page": str(page_num),
                     }
                 )
+    finally:
+        doc.close()
     return pages
 
 
 def chunk_documents(
     pages: list[dict[str, str]],
 ) -> list[tuple[str, dict[str, str]]]:
-    """
-    Split extracted pages into overlapping text chunks.
-
-    Uses RecursiveCharacterTextSplitter with configurable chunk size and
-    overlap from settings. Each chunk retains the source and page metadata
-    of its origin page.
-
-    Args:
-        pages (list[dict[str, str]]): Page dicts from extract_text_from_pdf().
-
-    Returns:
-        list[tuple[str, dict[str, str]]]: List of (chunk_text, metadata) tuples
-            ready for vector store insertion.
-    """
+    """Split extracted pages into overlapping text chunks."""
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=settings.chunk_size,
         chunk_overlap=settings.chunk_overlap,
@@ -73,20 +49,7 @@ def chunk_documents(
 
 
 def ingest_pdfs(data_dir: str | None = None) -> int:
-    """
-    Ingest all PDFs from a directory into the Chroma vector store.
-
-    Scans the target directory for .pdf files, extracts text page-by-page,
-    splits into overlapping chunks, and bulk-inserts into Chroma with
-    source metadata and vector embeddings.
-
-    Args:
-        data_dir (str | None): Directory containing PDF files.
-            Defaults to settings.data_raw_dir if not provided.
-
-    Returns:
-        int: Total number of chunks ingested into the vector store.
-    """
+    """Ingest all PDFs from a directory into the Chroma vector store."""
     data_dir = data_dir or settings.data_raw_dir
     pdf_files = list(Path(data_dir).glob("*.pdf"))
 
