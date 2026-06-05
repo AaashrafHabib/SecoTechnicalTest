@@ -131,3 +131,10 @@ infra/
 - **Deployment:** Docker → AWS ECS (Fargate)
 - **Package Manager:** UV
 - **Linting:** Ruff + Mypy (pre-commit hooks)
+
+## Live Demo
+
+🌐 **[Try the live app](http://52.209.250.246:8000)** - Deployed on AWS ECS (Fargate)
+
+**Note:** The live demo shows the UI and architecture. For full functionality with ingested documents, run locally following the setup instructions above.
+
