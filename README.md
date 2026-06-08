@@ -35,31 +35,6 @@ SECO's core business is technical control and risk prevention in construction. T
 | **PyMuPDF** | Fast PDF extraction, handles complex layouts, good for technical documents | Doesn't handle scanned PDFs — would add AWS Textract for OCR in production |
 | **UV** | Fast, reproducible builds, lockfile for exact dependency pinning | Newer tool, less community knowledge |
 
-## What would you put in production tomorrow vs. what would you throw away?
-
-**Keep for production:**
-- RAG architecture (retrieve → augment → generate)
-- Chainlit as the UI layer (it supports auth, multi-tenancy, conversation history)
-- AWS Bedrock integration (Claude for generation, Titan for embeddings)
-- Pre-commit hooks and linting setup
-- Docker/ECS deployment pattern
-
-**Throw away / replace:**
-- ChromaDB → Amazon OpenSearch or PostgreSQL + pgvector (scalability, managed service)
-- Sample PDFs → real licensed Eurocode documents + SECO internal standards
-- Simple similarity search → hybrid search (keyword + semantic) with reranking
-- Single-user setup → add Chainlit auth + per-user conversation history
-
-## If you had 3 more months, what would the product look like?
-
-1. **Multi-modal ingestion:** AWS Textract for scanned documents, support for architectural plans (image understanding)
-2. **Multilingual support:** French/German/English (Luxembourg's working languages), with language detection and cross-language retrieval
-3. **Inspection workflow integration:** Generate pre-filled inspection checklists based on building type and applicable standards
-4. **Historical defect database:** RAG over SECO's past inspection reports to find similar defects and their resolutions
-5. **Mobile-first interface:** Inspectors work on-site — optimize for tablet/phone with offline capability
-6. **Compliance scoring:** Automated assessment of whether a reported defect exceeds standard tolerances
-7. **Report generation:** Auto-generate the relevant standards section for inspection reports
-
 ## Setup
 
 ### Prerequisites
