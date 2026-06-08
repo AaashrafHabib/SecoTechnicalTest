@@ -35,7 +35,6 @@ SECO's core business is technical control and risk prevention in construction. T
 | **PyMuPDF** | Fast PDF extraction, handles complex layouts, good for technical documents | Doesn't handle scanned PDFs — would add AWS Textract for OCR in production |
 | **UV** | Fast, reproducible builds, lockfile for exact dependency pinning | Newer tool, less community knowledge |
 
-## Setup
 
 ### Prerequisites
 - Python 3.10-3.12
